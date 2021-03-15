@@ -1,5 +1,8 @@
+import { useRouter } from 'next/router'
+
 export default function CarsList() {
+  const { query } = useRouter();
   return (
-    <h1>Cars List</h1>
+    <h1>{query.vehicle}</h1>
   )
 }
