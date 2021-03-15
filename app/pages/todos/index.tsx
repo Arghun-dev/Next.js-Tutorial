@@ -1,24 +1,15 @@
-import styles from './index'
+import styles from '../../styles/todos.module.css'
+import AddTodo from '../../components/AddTodo'
 
 export default function Todos({ todos }) {
   return (
-    <div>
+    <div className={styles.todos}>
+      <AddTodo />
       {todos.map(item => (
-        <div className="todoItem">
+        <div className={styles.todoItem}>
           {item.title}
         </div>
       ))}
-
-      <style>
-        {`
-          .todoItem {
-            border: 1px solid #ddd;
-            padding: 5px;
-            margin: 20px;
-            border-radius: 5px;
-          }
-        `}
-      </style>
     </div>
   )
 }
