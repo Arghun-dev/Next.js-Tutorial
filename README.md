@@ -52,3 +52,23 @@ export default function Home() {
   return <div>{JSON.stringify(query)}</div>
 }
 ```
+
+
+## Data Fetching with getInitialProps
+
+```js
+import { useRouter } from 'next/router';
+
+export default function List({ ownersList }) {
+const router = useRouter();
+  return <pre>{JSON.stringify(ownersList, null, 4)}</pre>
+}
+
+List.getInitialProps = async () => {
+  const response = await fetch('http://localhost:4001/vehicles');
+  const ownerList = await response.json();
+  return {ownersList: ownerList}
+}
+```
+
+this is server side rendering and that is exactly what we want in the first place.
