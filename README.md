@@ -87,3 +87,17 @@ this is server side rendering and that is exactly what we want in the first plac
 
 `req`: HTTP request object (server only)
 `res`: HTTP response object (server only)
+
+
+## Migration to Typescript
+
+create a dependency graph per screen or per entry point,
+
+here we have 4 entry points
+
+1.`pages/[vehicle]/[person].js`
+2.`pages/HomePage.js`
+3.`pages/`
+4.`pages/Lists.js`
+
+now we need to pick one of those entry points, and we will get all the childs from it recursively. And create them diagram of dependencies.
