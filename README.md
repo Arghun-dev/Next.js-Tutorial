@@ -22,12 +22,33 @@ export default function Index() {
     <div>
       {people.map(item => (
         <div>
-          <Link as={`/${item.name}/${item.vehicle}`} href="/[vehicle]/[person]">
+          <Link href="/[vehicle]/[person]">
             <a>Navigate to {item.name}'s {item.vehicle}</a>
           </Link>
         </div>
       ))}
     </div>
   )
+}
+```
+
+
+## Some changes of Next.js Router
+
+1. Next Router is now case sensitive, so if you create a file in your `pages` folder and that file is all `uppercase` that bit of the `url` where that file represents will have to be all uppercase as well. otherwise, Next will return a `404` page.
+
+2. You probably remember, I created `link` and then i put `href` and then `as` property in that component, well you no longer need the `as` property at all. those are the two big changes in `Next.js`
+
+
+## Example
+
+`pages/[country]/[person].js`
+
+```js
+import { useRouter } from 'next/router';
+
+export default function Home() {
+  const { query } = useRouter();
+  return <div>{JSON.stringify(query)}</div>
 }
 ```
