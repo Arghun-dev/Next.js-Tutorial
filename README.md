@@ -56,6 +56,8 @@ export default function Home() {
 
 ## Data Fetching with getInitialProps
 
+`pages/[vehicle]/[person].js`
+
 ```js
 import { useRouter } from 'next/router';
 
@@ -64,11 +66,24 @@ const router = useRouter();
   return <pre>{JSON.stringify(ownersList, null, 4)}</pre>
 }
 
-List.getInitialProps = async () => {
-  const response = await fetch('http://localhost:4001/vehicles');
+List.getInitialProps = async (ctx) => {
+  if (!req.ctx) {
+    return { ownersList: [] }
+  }
+  const { query } = ctx;
+  // this person name is coming directly from [person].js and this is completely dynamic
+  const response = await fetch('http://localhost:4001/vehicles?ownerName=' + query.person + '&vehicle=' + query.vehicle); 
   const ownerList = await response.json();
   return {ownersList: ownerList}
 }
 ```
 
 this is server side rendering and that is exactly what we want in the first place.
+
+
+## What is ctx?
+
+`Next.js` provides inside, inside the `context` the thing called => `request` and `response`. inside `getInitialProps` we have the `context` object. and this is the `ctx` that we are using.
+
+`req`: HTTP request object (server only)
+`res`: HTTP response object (server only)
